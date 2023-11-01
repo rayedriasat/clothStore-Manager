@@ -19,15 +19,18 @@ public class HomePage extends JFrame implements ActionListener {
 	private Order order;
 	private JButton addCustomerButton, addProductButton, addClothButton, addOrderButton, searchButton,
 			editButton, deleteButton, showAllButton, showCustomerButton, showOrderButton;
-	private JPanel clothInputPanel, customerInputPanel, orderInputPanel;
+	private JPanel clothInputPanel, customerInputPanel, orderInputPanel, searchPanel, editCustomerPanel, editClothPanel, deleteClothPanel, delPanel;
 	private DefaultTableModel productTableModel, customerTableModel, orderTableModel;
 	private JTable productTable, customerTable, orderTable;
 	private JScrollPane productScrollPane, customerScrollPane, orderScrollPane;
-	private JPanel searchPanel;
 	private JButton editCustomerButton;
 	private JButton editClothButton;
-	private JPanel editCustomerPanel;
-	private JPanel editClothPanel;
+	private JButton deleteClothButton;
+	private JButton deleteCustomerButton;
+	private JButton deleteOrderButton;
+	private JPanel deleteCustomerPanel;
+	private JPanel deleteOrderPanel;
+
 
 	HomePage() {
 		store1 = new OnlineStoreManagementSystem();
@@ -260,7 +263,7 @@ public class HomePage extends JFrame implements ActionListener {
     				clothPriceField.setText("");
     				clothSizeField.setText("");
     				clothMaterialField.setText("");
-    				clothInStockCheckBox.setSelected(false);
+    				clothInStockCheckBox.setSelected(true);
                 }
             }
 
@@ -275,7 +278,7 @@ public class HomePage extends JFrame implements ActionListener {
 				clothPriceField.setText("");
 				clothSizeField.setText("");
 				clothMaterialField.setText("");
-				clothInStockCheckBox.setSelected(false);
+				clothInStockCheckBox.setSelected(true);
 			}
 		});
 
@@ -305,7 +308,7 @@ public class HomePage extends JFrame implements ActionListener {
 				clothPriceField.setText("");
 				clothSizeField.setText("");
 				clothMaterialField.setText("");
-				clothInStockCheckBox.setSelected(false);
+				clothInStockCheckBox.setSelected(true);
 			}
 		});
 		image1.add(clothInputPanel);
@@ -928,6 +931,148 @@ public class HomePage extends JFrame implements ActionListener {
 		image1.add(editCustomerPanel);
 		image1.add(editClothPanel);
 		
+		
+		//del panels
+		delPanel = new JPanel();
+        delPanel.setLayout(null);
+        delPanel.setBounds(310, 60, 300, 300);
+        deleteClothButton = new JButton("Delete Cloth");
+        deleteCustomerButton = new JButton("Delete Customer");
+        deleteOrderButton = new JButton("Delete Order");
+
+        deleteClothButton.addActionListener(this);
+        deleteCustomerButton.addActionListener(this);
+        deleteOrderButton.addActionListener(this);
+        
+        deleteClothButton.setBounds(75, 30, 150, 30);
+        deleteCustomerButton.setBounds(75, 70, 150, 30);
+        deleteOrderButton.setBounds(75, 110, 150, 30);
+
+        delPanel.add(deleteClothButton);
+        delPanel.add(deleteCustomerButton);
+        delPanel.add(deleteOrderButton);
+        delPanel.setVisible(false);
+        image1.add(delPanel);
+        
+        //del cloth panel
+        deleteClothPanel = new JPanel();
+        deleteClothPanel.setLayout(null);
+        deleteClothPanel.setBounds(310, 60, 300, 300);
+
+        JLabel label = new JLabel("Cloth ID to delete:");
+        label.setBounds(75, 10, 150, 20); // Position the label above the text field
+
+        JTextField delClothIdField = new JTextField();
+        delClothIdField.setBounds(75, 30, 150, 30);
+
+        JButton deleteClothEnter = new JButton("Delete Cloth");
+        deleteClothEnter.setBounds(75, 70, 150, 30);
+        deleteClothEnter.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Handle the delete action here
+                try {
+                    int clothId = Integer.parseInt(delClothIdField.getText());
+                    store1.deleteCloth(clothId);
+                    JOptionPane.showMessageDialog(deleteClothPanel, "Cloth "+ clothId +" deleted!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    showProductTable();
+		            productScrollPane.setVisible(true);
+		            customerScrollPane.setVisible(false);
+		            orderScrollPane.setVisible(false);
+                } catch (NumberFormatException ex) {
+                	System.out.println("NumFormatError in clothId");
+                } catch (ProductNotFoundException e1) {
+					System.out.println("Cloth already don't exist ");
+				}
+            }
+        });
+
+        deleteClothPanel.add(label);
+        deleteClothPanel.add(delClothIdField);
+        deleteClothPanel.add(deleteClothEnter);
+        deleteClothPanel.setVisible(false);
+        image1.add(deleteClothPanel);
+        
+     // Create deleteCustomerPanel
+        deleteCustomerPanel = new JPanel();
+        deleteCustomerPanel.setLayout(null);
+        deleteCustomerPanel.setBounds(310, 60, 300, 300);
+
+        JLabel customerLabel = new JLabel("Customer ID to delete:");
+        customerLabel.setBounds(75, 10, 150, 20);
+
+        JTextField delCustomerField = new JTextField();
+        delCustomerField.setBounds(75, 30, 150, 30);
+
+        JButton deleteCustomerEnter = new JButton("Delete Customer");
+        deleteCustomerEnter.setBounds(75, 70, 150, 30);
+        deleteCustomerEnter.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Handle the delete customer action here
+                try {
+                    int customerId = Integer.parseInt(delCustomerField.getText());
+                    store1.deleteCustomer(customerId);
+                    JOptionPane.showMessageDialog(deleteClothPanel, "Customer "+ customerId +" deleted!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    showCustomerTable();
+		            productScrollPane.setVisible(false);
+		            customerScrollPane.setVisible(true);
+		            orderScrollPane.setVisible(false);
+                } catch (NumberFormatException ex) {
+                    System.out.println("NumFormatError in customer ID");
+                } catch (CustomerNotFoundException e1) {
+                    System.out.println("Customer does not exist");
+                }
+            }
+        });
+
+        deleteCustomerPanel.add(customerLabel);
+        deleteCustomerPanel.add(delCustomerField);
+        deleteCustomerPanel.add(deleteCustomerEnter);
+        deleteCustomerPanel.setVisible(false);
+        image1.add(deleteCustomerPanel);
+
+        // Create deleteOrderPanel
+        deleteOrderPanel = new JPanel();
+        deleteOrderPanel.setLayout(null);
+        deleteOrderPanel.setBounds(310, 60, 300, 300);
+
+        JLabel orderLabel = new JLabel("Order ID to delete:");
+        orderLabel.setBounds(75, 10, 150, 20);
+
+        JTextField delOrderField = new JTextField();
+        delOrderField.setBounds(75, 30, 150, 30);
+
+        JButton deleteOrderEnter = new JButton("Delete Order");
+        deleteOrderEnter.setBounds(75, 70, 150, 30);
+        deleteOrderEnter.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Handle the delete order action here
+                try {
+                    int orderId = Integer.parseInt(delOrderField.getText());
+                    store1.deleteOrder(orderId);
+                    JOptionPane.showMessageDialog(deleteClothPanel, "Order "+ orderId +" deleted!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    showOrderTable();
+		            productScrollPane.setVisible(false);
+		            customerScrollPane.setVisible(false);
+		            orderScrollPane.setVisible(true);
+                } catch (NumberFormatException ex) {
+                    System.out.println("NumFormatError in order ID");
+                } catch (OrderNotFoundException e1) {
+                    System.out.println("Order does not exist");
+                }
+            }
+        });
+
+        deleteOrderPanel.add(orderLabel);
+        deleteOrderPanel.add(delOrderField);
+        deleteOrderPanel.add(deleteOrderEnter);
+        deleteOrderPanel.setVisible(false);
+        image1.add(deleteOrderPanel);
+
+
+        
 		setSize(1120, 630);
 		setLocation(250, 100);
 		setVisible(true);
@@ -937,35 +1082,101 @@ public class HomePage extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent ae) {
 		if (ae.getSource() == addCustomerButton) {
+			delPanel.setVisible(false);
+			editCustomerPanel.setVisible(false);
+			editClothPanel.setVisible(false);
 			clothInputPanel.setVisible(false);
+			deleteClothPanel.setVisible(false);
+			deleteCustomerPanel.setVisible(false);
+			deleteOrderPanel.setVisible(false);
 			if (!customerInputPanel.isVisible())
 				customerInputPanel.setVisible(true);
 			else
 				customerInputPanel.setVisible(false);
+			
 		} else if (ae.getSource() == addOrderButton) {
 			if (!orderInputPanel.isVisible())
 				orderInputPanel.setVisible(true);
 			else
 				orderInputPanel.setVisible(false);
+			
 		} else if (ae.getSource() == addProductButton) {
+			delPanel.setVisible(false);
+			editCustomerPanel.setVisible(false);
+			editClothPanel.setVisible(false);
 			customerInputPanel.setVisible(false);
+			deleteClothPanel.setVisible(false);
+			deleteCustomerPanel.setVisible(false);
+			deleteOrderPanel.setVisible(false);
 			if (!clothInputPanel.isVisible())
 				clothInputPanel.setVisible(true);
 			else
 				clothInputPanel.setVisible(false);
+		} else if (ae.getSource() == deleteButton) {
+			editCustomerPanel.setVisible(false);
+			editClothPanel.setVisible(false);
+			customerInputPanel.setVisible(false);
+			clothInputPanel.setVisible(false);
+			deleteClothPanel.setVisible(false);
+			deleteCustomerPanel.setVisible(false);
+			deleteOrderPanel.setVisible(false);
+			if (!delPanel.isVisible())delPanel.setVisible(true);
+			else delPanel.setVisible(false);
+		} else if (ae.getSource() == deleteClothButton) {
+			delPanel.setVisible(false);
+			editCustomerPanel.setVisible(false);
+			editClothPanel.setVisible(false);
+			customerInputPanel.setVisible(false);
+			clothInputPanel.setVisible(false);
+			deleteClothPanel.setVisible(true);
+			deleteCustomerPanel.setVisible(false);
+			deleteOrderPanel.setVisible(false);
+			delPanel.setVisible(false);	
+		} else if (ae.getSource() == deleteCustomerButton) {
+			delPanel.setVisible(false);
+			editCustomerPanel.setVisible(false);
+			editClothPanel.setVisible(false);
+			customerInputPanel.setVisible(false);
+			clothInputPanel.setVisible(false);
+			deleteClothPanel.setVisible(false);
+			deleteCustomerPanel.setVisible(true);
+			deleteOrderPanel.setVisible(false);
+			delPanel.setVisible(false);	
+		}else if (ae.getSource() == deleteOrderButton) {
+			delPanel.setVisible(false);
+			editCustomerPanel.setVisible(false);
+			editClothPanel.setVisible(false);
+			customerInputPanel.setVisible(false);
+			clothInputPanel.setVisible(false);
+			deleteClothPanel.setVisible(false);
+			deleteCustomerPanel.setVisible(false);
+			deleteOrderPanel.setVisible(true);
+			delPanel.setVisible(false);
+			if (!deleteOrderPanel.isVisible())deleteOrderPanel.setVisible(true);
+			else deleteOrderPanel.setVisible(false);
 		} else if (ae.getSource() == searchButton) {
 			if (!searchPanel.isVisible())searchPanel.setVisible(true);
 			else searchPanel.setVisible(false);
-		} else if (ae.getSource() == deleteButton) {
-			// Handle deleting
 		} else if (ae.getSource() == editCustomerButton) {
 			if(!editCustomerPanel.isVisible())editCustomerPanel.setVisible(true);
 			else editCustomerPanel.setVisible(false);
+			delPanel.setVisible(false);
 	        editClothPanel.setVisible(false);
+	        customerInputPanel.setVisible(false);
+			clothInputPanel.setVisible(false);
+			deleteClothPanel.setVisible(false);
+			deleteCustomerPanel.setVisible(false);
+			deleteOrderPanel.setVisible(false);
 		} else if (ae.getSource() == editClothButton) {
 			if(!editClothPanel.isVisible())editClothPanel.setVisible(true);
 			else editClothPanel.setVisible(false);
+			delPanel.setVisible(false);
 			editCustomerPanel.setVisible(false);
+			customerInputPanel.setVisible(false);
+			clothInputPanel.setVisible(false);
+			deleteClothPanel.setVisible(false);
+			deleteCustomerPanel.setVisible(false);
+			deleteOrderPanel.setVisible(false);
 	        
 		} else if (ae.getSource() == showAllButton) {
 			showProductTable();
