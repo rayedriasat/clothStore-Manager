@@ -24,6 +24,10 @@ public class HomePage extends JFrame implements ActionListener {
 	private JTable productTable, customerTable, orderTable;
 	private JScrollPane productScrollPane, customerScrollPane, orderScrollPane;
 	private JPanel searchPanel;
+	private JButton editCustomerButton;
+	private JButton editClothButton;
+	private JPanel editCustomerPanel;
+	private JPanel editClothPanel;
 
 	HomePage() {
 		store1 = new OnlineStoreManagementSystem();
@@ -76,11 +80,11 @@ public class HomePage extends JFrame implements ActionListener {
 		deleteButton.addActionListener(this);
 		image1.add(deleteButton);
 
-		// Button for edit
-		editButton = new JButton("Edit Menu");
-		editButton.setBounds(820, 200, 150, 40);
-		editButton.addActionListener(this);
-		image1.add(editButton);
+		// Button for show all order
+		showOrderButton = new JButton("Show Orders");
+		showOrderButton.setBounds(820, 200, 150, 40);
+		showOrderButton.addActionListener(this);
+		image1.add(showOrderButton);		
 
 		// Button for show all
 		showAllButton = new JButton("Show all Products");
@@ -93,12 +97,6 @@ public class HomePage extends JFrame implements ActionListener {
 		showCustomerButton.setBounds(820, 260, 150, 40);
 		showCustomerButton.addActionListener(this);
 		image1.add(showCustomerButton);
-
-		// Button for show all order
-		showOrderButton = new JButton("Show Orders");
-		showOrderButton.setBounds(650, 320, 150, 40);
-		showOrderButton.addActionListener(this);
-		image1.add(showOrderButton);
 
 		// Cloth Input Panel
 		clothInputPanel = new JPanel();
@@ -507,7 +505,6 @@ public class HomePage extends JFrame implements ActionListener {
 		orderInputPanel.add(clearOrderButton);
 		
 		showAllButton.setFocusable(false);
-		editButton.setFocusable(false);
 		deleteButton.setFocusable(false);
 		searchButton.setFocusable(false);
 		addOrderButton.setFocusable(false);
@@ -764,9 +761,172 @@ public class HomePage extends JFrame implements ActionListener {
 		        orderScrollPane.setVisible(false);
 		    }
 		});
-
 		// Add the search panel to the main panel
 		image1.add(searchPanel);
+		
+		// editPanels
+		// Create panels for editing customers and cloths
+		editCustomerPanel = new JPanel();
+		editCustomerPanel.setLayout(null);
+		editCustomerPanel.setBounds(310, 60, 300, 300);
+		editCustomerPanel.setVisible(false);
+
+		editClothPanel = new JPanel();
+		editClothPanel.setLayout(null);
+		editClothPanel.setBounds(310, 60, 300, 300);
+		editClothPanel.setVisible(false);
+
+		// Create input fields for editing customers
+		JLabel editCustomerLabel = new JLabel("Edit Customer:");
+		editCustomerLabel.setBounds(10, 10, 150, 20);
+		editCustomerPanel.add(editCustomerLabel);
+
+		JLabel eCustomerIdLabel = new JLabel("Customer ID:");
+		eCustomerIdLabel.setBounds(10, 40, 100, 20);
+		editCustomerPanel.add(eCustomerIdLabel);
+
+		JTextField eCustomerIdField = new JTextField();
+		eCustomerIdField.setBounds(120, 40, 150, 20);
+		editCustomerPanel.add(eCustomerIdField);
+
+		JLabel newNameLabel = new JLabel("New Name:");
+		newNameLabel.setBounds(10, 70, 100, 20);
+		editCustomerPanel.add(newNameLabel);
+
+		JTextField newNameField = new JTextField();
+		newNameField.setBounds(120, 70, 150, 20);
+		editCustomerPanel.add(newNameField);
+
+		JLabel newEmailLabel = new JLabel("New Email:");
+		newEmailLabel.setBounds(10, 100, 100, 20);
+		editCustomerPanel.add(newEmailLabel);
+
+		JTextField newEmailField = new JTextField();
+		newEmailField.setBounds(120, 100, 150, 20);
+		editCustomerPanel.add(newEmailField);
+
+		JLabel newAgeLabel = new JLabel("New Age:");
+		newAgeLabel.setBounds(10, 130, 100, 20);
+		editCustomerPanel.add(newAgeLabel);
+
+		JTextField newAgeField = new JTextField();
+		newAgeField.setBounds(120, 130, 150, 20);
+		editCustomerPanel.add(newAgeField);
+
+		// Create a "Save Changes" button for editing customers
+		JButton saveCustomerChangesButton = new JButton("Save Changes");
+		saveCustomerChangesButton.setBounds(10, 160, 150, 30);
+		editCustomerPanel.add(saveCustomerChangesButton);
+
+		// Add action listener for the "Save Changes" button for customers
+		saveCustomerChangesButton.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        try {
+		            int customerId = Integer.parseInt(eCustomerIdField.getText());
+		            String newName = newNameField.getText();
+		            String newEmail = newEmailField.getText();
+		            int newAge = Integer.parseInt(newAgeField.getText());
+		            store1.editCustomer(customerId, newName, newEmail, newAge);
+		            JOptionPane.showMessageDialog(editCustomerPanel, "Customer changes saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+		            showCustomerTable();
+		            productScrollPane.setVisible(false);
+		            customerScrollPane.setVisible(true);
+		            orderScrollPane.setVisible(false);
+		        } catch (NumberFormatException | CustomerNotFoundException ex) {
+		            JOptionPane.showMessageDialog(editCustomerPanel, "Error: Invalid input or customer not found.", "Error", JOptionPane.ERROR_MESSAGE);
+		        }
+		    }
+		});
+
+		// Create input fields for editing cloths
+		JLabel editClothLabel = new JLabel("Edit Cloth:");
+		editClothLabel.setBounds(10, 10, 150, 20);
+		editClothPanel.add(editClothLabel);
+
+		JLabel eClothIdLabel = new JLabel("Cloth ID:");
+		eClothIdLabel.setBounds(10, 40, 100, 20);
+		editClothPanel.add(eClothIdLabel);
+
+		JTextField eClothIdField = new JTextField();
+		eClothIdField.setBounds(120, 40, 150, 20);
+		editClothPanel.add(eClothIdField);
+
+		JLabel newClothNameLabel = new JLabel("New Name:");
+		newClothNameLabel.setBounds(10, 70, 100, 20);
+		editClothPanel.add(newClothNameLabel);
+
+		JTextField newClothNameField = new JTextField();
+		newClothNameField.setBounds(120, 70, 150, 20);
+		editClothPanel.add(newClothNameField);
+
+		JLabel newClothPriceLabel = new JLabel("New Price:");
+		newClothPriceLabel.setBounds(10, 100, 100, 20);
+		editClothPanel.add(newClothPriceLabel);
+
+		JTextField newClothPriceField = new JTextField();
+		newClothPriceField.setBounds(120, 100, 150, 20);
+		editClothPanel.add(newClothPriceField);
+
+		JLabel newClothSizeLabel = new JLabel("New Size:");
+		newClothSizeLabel.setBounds(10, 130, 100, 20);
+		editClothPanel.add(newClothSizeLabel);
+
+		JTextField newClothSizeField = new JTextField();
+		newClothSizeField.setBounds(120, 130, 150, 20);
+		editClothPanel.add(newClothSizeField);
+
+		JLabel newClothMaterialLabel = new JLabel("New Material:");
+		newClothMaterialLabel.setBounds(10, 160, 100, 20);
+		editClothPanel.add(newClothMaterialLabel);
+
+		JTextField newClothMaterialField = new JTextField();
+		newClothMaterialField.setBounds(120, 160, 150, 20);
+		editClothPanel.add(newClothMaterialField);
+
+		// Create a "Save Changes" button for editing cloths
+		JButton saveClothChangesButton = new JButton("Save Changes");
+		saveClothChangesButton.setBounds(10, 190, 150, 30);
+		editClothPanel.add(saveClothChangesButton);
+
+		// Add action listener for the "Save Changes" button for cloths
+		saveClothChangesButton.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        try {
+		            int clothId = Integer.parseInt(eClothIdField.getText());
+		            String newClothName = newClothNameField.getText();
+		            double newClothPrice = Double.parseDouble(newClothPriceField.getText());
+		            String newClothSize = newClothSizeField.getText();
+		            String newClothMaterial = newClothMaterialField.getText();
+		            store1.editCloth(clothId, newClothName, newClothPrice, newClothSize, newClothMaterial);
+		            JOptionPane.showMessageDialog(editClothPanel, "Cloth changes saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+		            showProductTable();
+		            productScrollPane.setVisible(true);
+		            customerScrollPane.setVisible(false);
+		            orderScrollPane.setVisible(false);
+		        } catch (NumberFormatException | ProductNotFoundException ex) {
+		            JOptionPane.showMessageDialog(editClothPanel, "Error: Invalid input or cloth not found.", "Error", JOptionPane.ERROR_MESSAGE);
+		        }
+		    }
+		});
+
+		// Create a main panel with buttons for selecting the type of object to edit
+		
+		editCustomerButton = new JButton("Edit Customer");
+		editCustomerButton.setBounds(650, 320, 150, 40);
+		editCustomerButton.addActionListener(this);
+		
+		editClothButton = new JButton("Edit Cloth");
+		editClothButton.setBounds(820, 320, 150, 40);
+		editClothButton.addActionListener(this);
+		
+		image1.add(editCustomerButton);
+		image1.add(editClothButton);
+
+		// Add all panels to the main image1 panel
+		image1.add(editCustomerPanel);
+		image1.add(editClothPanel);
 		
 		setSize(1120, 630);
 		setLocation(250, 100);
@@ -798,8 +958,15 @@ public class HomePage extends JFrame implements ActionListener {
 			else searchPanel.setVisible(false);
 		} else if (ae.getSource() == deleteButton) {
 			// Handle deleting
-		} else if (ae.getSource() == editButton) {
-			// Handle editing
+		} else if (ae.getSource() == editCustomerButton) {
+			if(!editCustomerPanel.isVisible())editCustomerPanel.setVisible(true);
+			else editCustomerPanel.setVisible(false);
+	        editClothPanel.setVisible(false);
+		} else if (ae.getSource() == editClothButton) {
+			if(!editClothPanel.isVisible())editClothPanel.setVisible(true);
+			else editClothPanel.setVisible(false);
+			editCustomerPanel.setVisible(false);
+	        
 		} else if (ae.getSource() == showAllButton) {
 			showProductTable();
 			if (!productScrollPane.isVisible()) productScrollPane.setVisible(true);
