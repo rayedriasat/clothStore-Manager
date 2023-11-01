@@ -53,7 +53,6 @@ public class OnlineStoreManagementSystem implements Serializable {
 
 	public Order createOrder(Customer customer) {
 		Order order = new Order(customer);
-		
 		return order;
 	}
 	
@@ -144,14 +143,12 @@ public class OnlineStoreManagementSystem implements Serializable {
 	public void editCustomer(int customerId, String newName, String newEmail, int newAge)
 			throws CustomerNotFoundException {
 		Customer customer = getCustomerById(customerId);
-
 		if (!newName.equals("0"))
 			customer.setName(newName);
 		if (!newEmail.equals("0"))
 			customer.setEmail(newEmail);
 		if (newAge != 0)
 			customer.setAge(newAge);
-
 	}
 
 	public void editCloth(int clothId, String newName, double newPrice, String newSize, String newMaterial)

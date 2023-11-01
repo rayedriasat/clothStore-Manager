@@ -6,6 +6,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 import com.onlinestore.OnlineStoreManagementSystem;
 import com.onlinestore.model.*;
@@ -16,13 +19,11 @@ public class HomePage extends JFrame implements ActionListener {
 	private Order order;
 	private JButton addCustomerButton, addProductButton, addClothButton, addOrderButton, searchButton,
 			editButton, deleteButton, showAllButton, showCustomerButton, showOrderButton;
-	private JPanel productInputPanel, clothInputPanel;
-	private JPanel customerInputPanel;
-	private JPanel orderInputPanel;
-
+	private JPanel clothInputPanel, customerInputPanel, orderInputPanel;
 	private DefaultTableModel productTableModel, customerTableModel, orderTableModel;
 	private JTable productTable, customerTable, orderTable;
 	private JScrollPane productScrollPane, customerScrollPane, orderScrollPane;
+	private JPanel searchPanel;
 
 	HomePage() {
 		store1 = new OnlineStoreManagementSystem();
@@ -64,19 +65,19 @@ public class HomePage extends JFrame implements ActionListener {
 		image1.add(addOrderButton);
 
 		// Button for search
-		searchButton = new JButton("Search Product, Customer, or Order");
+		searchButton = new JButton("Search Product");
 		searchButton.setBounds(820, 140, 150, 40);
 		searchButton.addActionListener(this);
 		image1.add(searchButton);
 
 		// Button for delete
-		deleteButton = new JButton("Delete Product, Customer, or Order");
+		deleteButton = new JButton("Delete Menu");
 		deleteButton.setBounds(650, 200, 150, 40);
 		deleteButton.addActionListener(this);
 		image1.add(deleteButton);
 
 		// Button for edit
-		editButton = new JButton("Edit Product, Customer, or Order");
+		editButton = new JButton("Edit Menu");
 		editButton.setBounds(820, 200, 150, 40);
 		editButton.addActionListener(this);
 		image1.add(editButton);
@@ -99,25 +100,11 @@ public class HomePage extends JFrame implements ActionListener {
 		showOrderButton.addActionListener(this);
 		image1.add(showOrderButton);
 
-		productInputPanel = new JPanel();
-		productInputPanel.setLayout(null);
-		productInputPanel.setBounds(310, 60, 300, 300);
-		productInputPanel.setVisible(false);
-		image1.add(productInputPanel);
-
-		// Add Product button options
-		addClothButton = new JButton("Add Cloth");
-		addClothButton.setBounds(10, 10, 130, 40);
-		addClothButton.addActionListener(this);
-		productInputPanel.add(addClothButton);
-
-
 		// Cloth Input Panel
 		clothInputPanel = new JPanel();
 		clothInputPanel.setLayout(null);
-		clothInputPanel.setBounds(10, 60, 280, 200);
+		clothInputPanel.setBounds(310, 60, 300, 300);
 		clothInputPanel.setVisible(false);
-		productInputPanel.add(clothInputPanel);
 
 		JLabel clothNameLabel = new JLabel("Name:");
 		clothNameLabel.setBounds(10, 10, 100, 20);
@@ -267,6 +254,9 @@ public class HomePage extends JFrame implements ActionListener {
     				JOptionPane.showMessageDialog(clothInputPanel, "Cloth added successfully!", "Success",
     						JOptionPane.INFORMATION_MESSAGE);
     				showProductTable();
+    				productScrollPane.setVisible(true);
+    				customerScrollPane.setVisible(false);
+    				orderScrollPane.setVisible(false);
     				// Clear the input fields after a successful addition
     				clothNameField.setText("");
     				clothPriceField.setText("");
@@ -309,6 +299,9 @@ public class HomePage extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(clothInputPanel, "Cloth added successfully!", "Success",
 						JOptionPane.INFORMATION_MESSAGE);
 				showProductTable();
+				productScrollPane.setVisible(true);
+				customerScrollPane.setVisible(false);
+				orderScrollPane.setVisible(false);
 				// Clear the input fields after a successful addition
 				clothNameField.setText("");
 				clothPriceField.setText("");
@@ -317,7 +310,8 @@ public class HomePage extends JFrame implements ActionListener {
 				clothInStockCheckBox.setSelected(false);
 			}
 		});
-
+		image1.add(clothInputPanel);
+		
 		// customerInputPanel
 		customerInputPanel = new JPanel();
 		customerInputPanel.setLayout(null);
@@ -511,6 +505,7 @@ public class HomePage extends JFrame implements ActionListener {
 		JButton clearOrderButton = new JButton("Clear");
 		clearOrderButton.setBounds(140, 175, 120, 30);
 		orderInputPanel.add(clearOrderButton);
+		
 		showAllButton.setFocusable(false);
 		editButton.setFocusable(false);
 		deleteButton.setFocusable(false);
@@ -519,11 +514,8 @@ public class HomePage extends JFrame implements ActionListener {
 		showCustomerButton.setFocusable(false);
 		addProductButton.setFocusable(false);
 		addCustomerButton.setFocusable(false);
-		enterClothButton.setFocusable(false);
 		clearClothButton.setFocusable(false);
-		addClothButton.setFocusable(false);
 		showOrderButton.setFocusable(false);
-		addClothButton.setFocusable(false);
 		
 		clothIdField.requestFocus();
 		// key order
@@ -598,6 +590,7 @@ public class HomePage extends JFrame implements ActionListener {
     					JOptionPane.showMessageDialog(clothInputPanel, "Cloth added to order successfully!", "Success",
     							JOptionPane.INFORMATION_MESSAGE);
     					clothIdField.setText("");
+    					clothIdField.requestFocus();
     				} catch (ProductNotFoundException e1) {
     					e1.printStackTrace();
     				}
@@ -658,6 +651,8 @@ public class HomePage extends JFrame implements ActionListener {
 					clothIdField.setText("");
 					showOrderTable();
 					orderScrollPane.setVisible(true);
+					productScrollPane.setVisible(false);
+					customerScrollPane.setVisible(false);
 					orderInputPanel.setVisible(false);
 				} else {
 					JOptionPane.showMessageDialog(orderInputPanel, "Input Customer ID", "Blank",
@@ -724,6 +719,54 @@ public class HomePage extends JFrame implements ActionListener {
 		image1.add(orderScrollPane);
 		orderScrollPane.setVisible(false);
 		//table end
+		// Add a search panel
+		searchPanel = new JPanel();
+		searchPanel.setLayout(null);
+		searchPanel.setBounds(310, 60, 300, 300);
+		searchPanel.setVisible(false);
+
+		// Add a label and text field for searching
+		JLabel searchLabel = new JLabel("Search by Name:");
+		searchLabel.setBounds(10, 10, 120, 20);
+		searchPanel.add(searchLabel);
+
+		JTextField searchTextField = new JTextField();
+		searchTextField.setBounds(140, 10, 150, 20);
+		searchPanel.add(searchTextField);
+
+		// Add a search button
+		JButton searchButton = new JButton("Search");
+		searchButton.setBounds(10, 40, 100, 30);
+		searchPanel.add(searchButton);
+
+		// Add an action listener for the search button
+		searchButton.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        String searchName = searchTextField.getText();
+		        
+		        // Perform the product search
+		        List<Cloth> searchResults = new ArrayList<>();
+				try {
+					searchResults = store1.searchClothesByName(searchName);
+				} catch (ProductNotFoundException e1) {
+					// do nothing, it'll show nothing. cuz nothing found
+				}
+
+		        // Display the search results in a table
+		        productTableModel.setRowCount(0); // Clear existing rows
+		        for (Cloth cloth : searchResults) {
+		                productTableModel.addRow(new Object[]{cloth.getProductId(), cloth.getName(), cloth.getPrice(), cloth.getSize(), cloth.getMaterial(), cloth.isInStock()});
+		        }
+
+		        productScrollPane.setVisible(true);
+		        customerScrollPane.setVisible(false);
+		        orderScrollPane.setVisible(false);
+		    }
+		});
+
+		// Add the search panel to the main panel
+		image1.add(searchPanel);
 		
 		setSize(1120, 630);
 		setLocation(250, 100);
@@ -734,7 +777,7 @@ public class HomePage extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent ae) {
 		if (ae.getSource() == addCustomerButton) {
-			productInputPanel.setVisible(false);
+			clothInputPanel.setVisible(false);
 			if (!customerInputPanel.isVisible())
 				customerInputPanel.setVisible(true);
 			else
@@ -746,14 +789,13 @@ public class HomePage extends JFrame implements ActionListener {
 				orderInputPanel.setVisible(false);
 		} else if (ae.getSource() == addProductButton) {
 			customerInputPanel.setVisible(false);
-			if (!productInputPanel.isVisible())
-				productInputPanel.setVisible(true);
+			if (!clothInputPanel.isVisible())
+				clothInputPanel.setVisible(true);
 			else
-				productInputPanel.setVisible(false);
-		} else if (ae.getSource() == addClothButton) {
-			clothInputPanel.setVisible(true);
+				clothInputPanel.setVisible(false);
 		} else if (ae.getSource() == searchButton) {
-			// Handle searching
+			if (!searchPanel.isVisible())searchPanel.setVisible(true);
+			else searchPanel.setVisible(false);
 		} else if (ae.getSource() == deleteButton) {
 			// Handle deleting
 		} else if (ae.getSource() == editButton) {
@@ -818,13 +860,27 @@ public class HomePage extends JFrame implements ActionListener {
 	        if (itemsOrdered.length() > 0) {
 	            itemsOrdered.setLength(itemsOrdered.length() - 2);
 	        }
-
+	        
 	        orderTableModel.addRow(new Object[]{order.getOrderId(), customerName, itemsOrdered.toString(), order.calculateTotalAmount()});
 	    }
+	    TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(orderTableModel);
+	    sorter.setComparator(3, Comparator.comparingDouble(value -> {
+	        if (value instanceof Double) {
+	            return (Double) value;
+	        } else if (value instanceof String) {
+	            try {
+	                return Double.parseDouble((String) value);
+	            } catch (NumberFormatException e) {
+	                return 0.0; 
+	            }
+	        }
+	        return 0.0; 
+	    }));
+
+	    orderTable.setRowSorter(sorter);
 	    productScrollPane.setVisible(false);
 		customerScrollPane.setVisible(false);
 	}
-
 
 	public static void main(String[] args) {
 	    try {
