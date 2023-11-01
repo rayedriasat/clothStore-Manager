@@ -53,7 +53,7 @@ public class OnlineStoreManagementSystem implements Serializable {
 
 	public Order createOrder(Customer customer) {
 		Order order = new Order(customer);
-		orders.add(order);
+		
 		return order;
 	}
 	
