@@ -886,10 +886,18 @@ public class HomePage extends JFrame implements ActionListener {
 		JTextField newClothMaterialField = new JTextField();
 		newClothMaterialField.setBounds(120, 160, 150, 20);
 		editClothPanel.add(newClothMaterialField);
+		
+		JLabel newClothToggleLabel = new JLabel("ToggleStock(y/n)");
+		newClothToggleLabel.setBounds(10, 190, 100, 20);
+		editClothPanel.add(newClothToggleLabel);
+
+		JTextField newClothToggleField = new JTextField();
+		newClothToggleField.setBounds(120, 190, 150, 20);
+		editClothPanel.add(newClothToggleField);
 
 		// Create a "Save Changes" button for editing cloths
 		JButton saveClothChangesButton = new JButton("Save Changes");
-		saveClothChangesButton.setBounds(10, 190, 150, 30);
+		saveClothChangesButton.setBounds(10, 220, 150, 30);
 		editClothPanel.add(saveClothChangesButton);
 
 		// Add action listener for the "Save Changes" button for cloths
@@ -903,6 +911,14 @@ public class HomePage extends JFrame implements ActionListener {
 		            String newClothSize = newClothSizeField.getText();
 		            String newClothMaterial = newClothMaterialField.getText();
 		            store1.editCloth(clothId, newClothName, newClothPrice, newClothSize, newClothMaterial);
+		            Cloth cloth = store1.getClothById(clothId);
+		            String toggleStock = newClothToggleField.getText();
+		            if (toggleStock.equalsIgnoreCase("y")) {
+						if (cloth.isInStock())
+							cloth.setInStock(false);
+						else
+							cloth.setInStock(true);
+		            }
 		            JOptionPane.showMessageDialog(editClothPanel, "Cloth changes saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
 		            showProductTable();
 		            productScrollPane.setVisible(true);
@@ -1152,8 +1168,7 @@ public class HomePage extends JFrame implements ActionListener {
 			deleteCustomerPanel.setVisible(false);
 			deleteOrderPanel.setVisible(true);
 			delPanel.setVisible(false);
-			if (!deleteOrderPanel.isVisible())deleteOrderPanel.setVisible(true);
-			else deleteOrderPanel.setVisible(false);
+
 		} else if (ae.getSource() == searchButton) {
 			if (!searchPanel.isVisible())searchPanel.setVisible(true);
 			else searchPanel.setVisible(false);
