@@ -17,9 +17,10 @@ import com.onlinestore.exeptions.*;
 public class HomePage extends JFrame implements ActionListener {
 	private static OnlineStoreManagementSystem store1;
 	private Order order;
-	private JButton addCustomerButton, addProductButton, addClothButton, addOrderButton, searchButton,
-			editButton, deleteButton, showAllButton, showCustomerButton, showOrderButton;
-	private JPanel clothInputPanel, customerInputPanel, orderInputPanel, searchPanel, editCustomerPanel, editClothPanel, deleteClothPanel, delPanel;
+	private JButton addCustomerButton, addProductButton, addOrderButton, searchButton, deleteButton, showAllButton,
+			showCustomerButton, showOrderButton;
+	private JPanel clothInputPanel, customerInputPanel, orderInputPanel, searchPanel, editCustomerPanel, editClothPanel,
+			deleteClothPanel, delPanel;
 	private DefaultTableModel productTableModel, customerTableModel, orderTableModel;
 	private JTable productTable, customerTable, orderTable;
 	private JScrollPane productScrollPane, customerScrollPane, orderScrollPane;
@@ -30,7 +31,6 @@ public class HomePage extends JFrame implements ActionListener {
 	private JButton deleteOrderButton;
 	private JPanel deleteCustomerPanel;
 	private JPanel deleteOrderPanel;
-
 
 	HomePage() {
 		store1 = new OnlineStoreManagementSystem();
@@ -52,7 +52,7 @@ public class HomePage extends JFrame implements ActionListener {
 		headerJLabel.setBounds(650, 20, 400, 40);
 		headerJLabel.setFont(new Font("Serif", Font.BOLD, 40));
 		image1.add(headerJLabel);
-
+		this.setTitle("RAM Clothing Store");
 		// Button for add product
 		addProductButton = new JButton("Add Product");
 		addProductButton.setBounds(650, 80, 150, 40);
@@ -87,7 +87,7 @@ public class HomePage extends JFrame implements ActionListener {
 		showOrderButton = new JButton("Show Orders");
 		showOrderButton.setBounds(820, 200, 150, 40);
 		showOrderButton.addActionListener(this);
-		image1.add(showOrderButton);		
+		image1.add(showOrderButton);
 
 		// Button for show all
 		showAllButton = new JButton("Show all Products");
@@ -157,120 +157,133 @@ public class HomePage extends JFrame implements ActionListener {
 		clothInputPanel.add(enterClothButton);
 
 		clothNameField.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {}
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
 
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    clothPriceField.requestFocus();
-                }
-            }
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
+					clothPriceField.requestFocus();
+				}
+			}
 
-            @Override
-            public void keyReleased(KeyEvent e) {}
-        });
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		});
 
-        clothPriceField.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {}
+		clothPriceField.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
 
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    clothSizeField.requestFocus();
-                }
-            }
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
+					clothSizeField.requestFocus();
+				}
+			}
 
-            @Override
-            public void keyReleased(KeyEvent e) {}
-        });
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		});
 
-        clothSizeField.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {}
+		clothSizeField.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
 
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    clothMaterialField.requestFocus();
-                }
-            }
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
+					clothMaterialField.requestFocus();
+				}
+			}
 
-            @Override
-            public void keyReleased(KeyEvent e) {}
-        });
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		});
 
-        clothMaterialField.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {}
+		clothMaterialField.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
 
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    clothInStockCheckBox.requestFocus();
-                }
-            }
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
+					clothInStockCheckBox.requestFocus();
+				}
+			}
 
-            @Override
-            public void keyReleased(KeyEvent e) {}
-        });
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		});
 
-        clothInStockCheckBox.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {}
+		clothInStockCheckBox.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
 
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    enterClothButton.requestFocus();
-                }
-            }
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
+					enterClothButton.requestFocus();
+				}
+			}
 
-            @Override
-            public void keyReleased(KeyEvent e) {}
-        });   
-        
-        enterClothButton.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {}
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		});
 
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
-                	// Get values from cloth input fields
-    				String name = clothNameField.getText();
-    				String priceStr = clothPriceField.getText();
-    				double price = 0.0;
-    				if (!priceStr.equals("")) price = Double.parseDouble(priceStr);
-    				String size = clothSizeField.getText();
-    				String material = clothMaterialField.getText();
-    				boolean inStock = clothInStockCheckBox.isSelected();
+		enterClothButton.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
 
-    				// Create a Cloth object with the entered values
-    				Cloth newCloth = new Cloth(name, price, size, material, inStock);
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
+					// values from cloth input fields
+					String name = clothNameField.getText();
+					String priceStr = clothPriceField.getText();
+					double price = 0.0;
+					if (!priceStr.equals(""))
+						price = Double.parseDouble(priceStr);
+					String size = clothSizeField.getText();
+					String material = clothMaterialField.getText();
+					boolean inStock = clothInStockCheckBox.isSelected();
 
-    				store1.addCloth(newCloth);
+					// Cloth object with the entered values
+					Cloth newCloth = new Cloth(name, price, size, material, inStock);
 
-    				JOptionPane.showMessageDialog(clothInputPanel, "Cloth added successfully!", "Success",
-    						JOptionPane.INFORMATION_MESSAGE);
-    				showProductTable();
-    				productScrollPane.setVisible(true);
-    				customerScrollPane.setVisible(false);
-    				orderScrollPane.setVisible(false);
-    				// Clear the input fields after a successful addition
-    				clothNameField.setText("");
-    				clothPriceField.setText("");
-    				clothSizeField.setText("");
-    				clothMaterialField.setText("");
-    				clothInStockCheckBox.setSelected(true);
-                }
-            }
+					store1.addCloth(newCloth);
 
-            @Override
-            public void keyReleased(KeyEvent e) {}
-        });
-		// Add action listeners for the buttons
+					JOptionPane.showMessageDialog(clothInputPanel, "Cloth added successfully!", "Success",
+							JOptionPane.INFORMATION_MESSAGE);
+					showProductTable();
+					productScrollPane.setVisible(true);
+					customerScrollPane.setVisible(false);
+					orderScrollPane.setVisible(false);
+					// Clear the input fields after a successful addition
+					clothNameField.setText("");
+					clothPriceField.setText("");
+					clothSizeField.setText("");
+					clothMaterialField.setText("");
+					clothInStockCheckBox.setSelected(true);
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		});
+		// action listeners for the buttons
 		clearClothButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -285,14 +298,14 @@ public class HomePage extends JFrame implements ActionListener {
 		enterClothButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Get values from cloth input fields
+				// values from cloth input fields
 				String name = clothNameField.getText();
 				double price = Double.parseDouble(clothPriceField.getText());
 				String size = clothSizeField.getText();
 				String material = clothMaterialField.getText();
 				boolean inStock = clothInStockCheckBox.isSelected();
 
-				// Create a Cloth object with the entered values
+				// Cloth object with the entered values
 				Cloth newCloth = new Cloth(name, price, size, material, inStock);
 
 				store1.addCloth(newCloth);
@@ -312,7 +325,7 @@ public class HomePage extends JFrame implements ActionListener {
 			}
 		});
 		image1.add(clothInputPanel);
-		
+
 		// customerInputPanel
 		customerInputPanel = new JPanel();
 		customerInputPanel.setLayout(null);
@@ -350,87 +363,94 @@ public class HomePage extends JFrame implements ActionListener {
 		JButton enterCustomerButton = new JButton("Enter");
 		enterCustomerButton.setBounds(150, 100, 100, 30);
 		customerInputPanel.add(enterCustomerButton);
-		
+
 		// key customer
 		customerNameField.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {}
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
 
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    customerEmailField.requestFocus();
-                }
-            }
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
+					customerEmailField.requestFocus();
+				}
+			}
 
-            @Override
-            public void keyReleased(KeyEvent e) {}
-        });
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		});
 
 		customerEmailField.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {}
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
 
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    customerAgeField.requestFocus();
-                }
-            }
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
+					customerAgeField.requestFocus();
+				}
+			}
 
-            @Override
-            public void keyReleased(KeyEvent e) {}
-        });
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		});
 
-        customerAgeField.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {}
+		customerAgeField.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
 
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    enterCustomerButton.requestFocus();
-                }
-            }
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
+					enterCustomerButton.requestFocus();
+				}
+			}
 
-            @Override
-            public void keyReleased(KeyEvent e) {}
-        });   
-        
-        enterCustomerButton.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {}
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		});
 
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
-                	// Get values from customer input fields
-    				String name = customerNameField.getText();
-    				String email = customerEmailField.getText();
-    				int age = Integer.parseInt(customerAgeField.getText());
+		enterCustomerButton.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
 
-    				// Create a Customer object with the entered values
-    				Customer newCustomer = new Customer(name, email, age);
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
+					// values from customer input fields
+					String name = customerNameField.getText();
+					String email = customerEmailField.getText();
+					int age = Integer.parseInt(customerAgeField.getText());
 
-    				store1.addCustomer(newCustomer);
-    				JOptionPane.showMessageDialog(customerInputPanel, "Customer added successfully!", "Success",
-    						JOptionPane.INFORMATION_MESSAGE);
-    				showCustomerTable();
-    				customerScrollPane.setVisible(true);
-    				productScrollPane.setVisible(false);
-    				orderScrollPane.setVisible(false);
-    				// Clear the input fields after a successful addition
-    				customerNameField.setText("");
-    				customerEmailField.setText("");
-    				customerAgeField.setText("");
-                }
-            }
+					Customer newCustomer = new Customer(name, email, age);
 
-            @Override
-            public void keyReleased(KeyEvent e) {}
-        });
+					store1.addCustomer(newCustomer);
+					JOptionPane.showMessageDialog(customerInputPanel, "Customer added successfully!", "Success",
+							JOptionPane.INFORMATION_MESSAGE);
+					showCustomerTable();
+					customerScrollPane.setVisible(true);
+					productScrollPane.setVisible(false);
+					orderScrollPane.setVisible(false);
+					// Clear the input fields after a successful addition
+					customerNameField.setText("");
+					customerEmailField.setText("");
+					customerAgeField.setText("");
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		});
 		// key customer end
-		// Add action listeners for the buttons
+		// action listeners for the buttons
 		clearCustomerButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -443,12 +463,12 @@ public class HomePage extends JFrame implements ActionListener {
 		enterCustomerButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Get values from customer input fields
+				// values from customer input fields
 				String name = customerNameField.getText();
 				String email = customerEmailField.getText();
 				int age = Integer.parseInt(customerAgeField.getText());
 
-				// Create a Customer object with the entered values
+				// a Customer object with the entered values
 				Customer newCustomer = new Customer(name, email, age);
 
 				store1.addCustomer(newCustomer);
@@ -506,7 +526,7 @@ public class HomePage extends JFrame implements ActionListener {
 		JButton clearOrderButton = new JButton("Clear");
 		clearOrderButton.setBounds(140, 175, 120, 30);
 		orderInputPanel.add(clearOrderButton);
-		
+
 		showAllButton.setFocusable(false);
 		deleteButton.setFocusable(false);
 		searchButton.setFocusable(false);
@@ -516,90 +536,99 @@ public class HomePage extends JFrame implements ActionListener {
 		addCustomerButton.setFocusable(false);
 		clearClothButton.setFocusable(false);
 		showOrderButton.setFocusable(false);
-		
+
 		clothIdField.requestFocus();
 		// key order
 		customerIdField.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {}
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
 
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    enterCustomerIdButton.requestFocus();
-                }
-            }
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
+					enterCustomerIdButton.requestFocus();
+				}
+			}
 
-            @Override
-            public void keyReleased(KeyEvent e) {}
-        });
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		});
 		enterCustomerIdButton.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {}
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
 
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
-                	// Retrieve the entered customer ID from the field
-    				int customerId = Integer.parseInt(customerIdField.getText());
-    				Customer cust;
-    				try {
-    					cust = store1.getCustomerById(customerId);
-    					order = new Order(cust);
-    				} catch (CustomerNotFoundException e1) {
-    					e1.printStackTrace();
-    				}
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
+					// Retrieve the entered customer ID from the field
+					int customerId = Integer.parseInt(customerIdField.getText());
+					Customer cust;
+					try {
+						cust = store1.getCustomerById(customerId);
+						order = new Order(cust);
+					} catch (CustomerNotFoundException e1) {
+						e1.printStackTrace();
+					}
 
-    				// Show the panel for adding Cloth
-    				addClothButton.setVisible(true);			
-    				clothIdLabel.setVisible(true);
-    				clothIdField.setVisible(true);
-    				clothIdField.requestFocus();
-                }
-            }
+					// Show the panel for adding Cloth
+					addClothButton.setVisible(true);
+					clothIdLabel.setVisible(true);
+					clothIdField.setVisible(true);
+					clothIdField.requestFocus();
+				}
+			}
 
-            @Override
-            public void keyReleased(KeyEvent e) {}
-        });
-		
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		});
+
 		clothIdField.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {}
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
 
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
-    				addClothButton.requestFocus();
-                }
-            }
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
+					addClothButton.requestFocus();
+				}
+			}
 
-            @Override
-            public void keyReleased(KeyEvent e) {}
-        });
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		});
 		addClothButton.addKeyListener(new KeyListener() {
 			int clothId;
-            @Override
-            public void keyTyped(KeyEvent e) {}
 
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
-                	clothId = Integer.parseInt(clothIdField.getText());
-    				try {
-    					order.addCloth(store1.getClothById(clothId));
-    					JOptionPane.showMessageDialog(clothInputPanel, "Cloth added to order successfully!", "Success",
-    							JOptionPane.INFORMATION_MESSAGE);
-    					clothIdField.setText("");
-    					clothIdField.requestFocus();
-    				} catch (ProductNotFoundException e1) {
-    					e1.printStackTrace();
-    				}
-                }
-            }
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
 
-            @Override
-            public void keyReleased(KeyEvent e) {}
-        });
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_ENTER) {
+					clothId = Integer.parseInt(clothIdField.getText());
+					try {
+						order.addCloth(store1.getClothById(clothId));
+						JOptionPane.showMessageDialog(clothInputPanel, "Cloth added to order successfully!", "Success",
+								JOptionPane.INFORMATION_MESSAGE);
+						clothIdField.setText("");
+						clothIdField.requestFocus();
+					} catch (ProductNotFoundException e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		});
 		// key order end
 		// Action listener for the "Enter Customer ID" button
 		enterCustomerIdButton.addActionListener(new ActionListener() {
@@ -672,103 +701,104 @@ public class HomePage extends JFrame implements ActionListener {
 		image1.add(orderInputPanel);
 
 // orderInputPanel end
-		//product
-		String[] prodColumnNames = { "ID", "Name", "Price", "Size", "Material / Brand", "In Stock" };
+		// product
+		String[] prodColumnNames = { "ID", "Name", "Price(Taka)", "Size", "Material / Brand", "In Stock" };
 		productTableModel = new DefaultTableModel(prodColumnNames, 0);
 		productTable = new JTable(productTableModel);
 
-		productTable.getColumnModel().getColumn(0).setPreferredWidth(50); 
-		productTable.getColumnModel().getColumn(1).setPreferredWidth(200); 
-		productTable.getColumnModel().getColumn(2).setPreferredWidth(80); 
-		productTable.getColumnModel().getColumn(3).setPreferredWidth(80); 
-		productTable.getColumnModel().getColumn(4).setPreferredWidth(150); 
-		productTable.getColumnModel().getColumn(5).setPreferredWidth(80); 
+		productTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+		productTable.getColumnModel().getColumn(1).setPreferredWidth(200);
+		productTable.getColumnModel().getColumn(2).setPreferredWidth(80);
+		productTable.getColumnModel().getColumn(3).setPreferredWidth(80);
+		productTable.getColumnModel().getColumn(4).setPreferredWidth(150);
+		productTable.getColumnModel().getColumn(5).setPreferredWidth(80);
 		TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(productTableModel);
-        productTable.setRowSorter(sorter);
+		productTable.setRowSorter(sorter);
 		productScrollPane = new JScrollPane(productTable);
 		productScrollPane.setBounds(25, 380, 1070, 200);
 		image1.add(productScrollPane);
 		productScrollPane.setVisible(false);
-		//customer
-		String[] custColumnNames = { "ID", "Name", "Email", "Age"};
+		// customer
+		String[] custColumnNames = { "ID", "Name", "Email", "Age" };
 		customerTableModel = new DefaultTableModel(custColumnNames, 0);
 		customerTable = new JTable(customerTableModel);
 
-		customerTable.getColumnModel().getColumn(0).setPreferredWidth(50); 
-		customerTable.getColumnModel().getColumn(1).setPreferredWidth(240); 
-		customerTable.getColumnModel().getColumn(2).setPreferredWidth(270); 
-		customerTable.getColumnModel().getColumn(3).setPreferredWidth(80); 
+		customerTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+		customerTable.getColumnModel().getColumn(1).setPreferredWidth(240);
+		customerTable.getColumnModel().getColumn(2).setPreferredWidth(270);
+		customerTable.getColumnModel().getColumn(3).setPreferredWidth(80);
 		TableRowSorter<DefaultTableModel> sorter2 = new TableRowSorter<>(customerTableModel);
-        customerTable.setRowSorter(sorter2);
+		customerTable.setRowSorter(sorter2);
 		customerScrollPane = new JScrollPane(customerTable);
 		customerScrollPane.setBounds(25, 380, 1070, 200);
 		image1.add(customerScrollPane);
 		customerScrollPane.setVisible(false);
-		//order
-		String[] orderColumnNames = { "ID", "Customer Name", "Items Ordered", "Total Price"};
+		// order
+		String[] orderColumnNames = { "ID", "Customer Name", "Items Ordered", "Total Price(Taka)" };
 		orderTableModel = new DefaultTableModel(orderColumnNames, 0);
 		orderTable = new JTable(orderTableModel);
 
-		orderTable.getColumnModel().getColumn(0).setPreferredWidth(50); 
-		orderTable.getColumnModel().getColumn(1).setPreferredWidth(220); 
-		orderTable.getColumnModel().getColumn(2).setPreferredWidth(290); 
-		orderTable.getColumnModel().getColumn(3).setPreferredWidth(80); 
+		orderTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+		orderTable.getColumnModel().getColumn(1).setPreferredWidth(220);
+		orderTable.getColumnModel().getColumn(2).setPreferredWidth(290);
+		orderTable.getColumnModel().getColumn(3).setPreferredWidth(80);
 
 		orderScrollPane = new JScrollPane(orderTable);
 		orderScrollPane.setBounds(25, 380, 1070, 200);
 		image1.add(orderScrollPane);
 		orderScrollPane.setVisible(false);
-		//table end
-		// Add a search panel
+		// table end
+		// search panel
 		searchPanel = new JPanel();
 		searchPanel.setLayout(null);
 		searchPanel.setBounds(310, 60, 300, 300);
 		searchPanel.setVisible(false);
 
-		// Add a label and text field for searching
-		JLabel searchLabel = new JLabel("Search by Name:");
-		searchLabel.setBounds(10, 10, 120, 20);
+		// label and text field for searching
+		JLabel searchLabel = new JLabel("Search by Prodcut Name:");
+		searchLabel.setBounds(10, 10, 190, 20);
 		searchPanel.add(searchLabel);
 
 		JTextField searchTextField = new JTextField();
-		searchTextField.setBounds(140, 10, 150, 20);
+		searchTextField.setBounds(140, 110, 130, 20);
 		searchPanel.add(searchTextField);
 
-		// Add a search button
+		// search button
 		JButton searchButton = new JButton("Search");
-		searchButton.setBounds(10, 40, 100, 30);
+		searchButton.setBounds(10, 110, 100, 30);
 		searchPanel.add(searchButton);
 
-		// Add an action listener for the search button
+		// action listener for the search button
 		searchButton.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		        String searchName = searchTextField.getText();
-		        
-		        // Perform the product search
-		        List<Cloth> searchResults = new ArrayList<>();
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String searchName = searchTextField.getText();
+
+				// Perform the product search
+				List<Cloth> searchResults = new ArrayList<>();
 				try {
 					searchResults = store1.searchClothesByName(searchName);
 				} catch (ProductNotFoundException e1) {
 					// do nothing, it'll show nothing. cuz nothing found
 				}
 
-		        // Display the search results in a table
-		        productTableModel.setRowCount(0); // Clear existing rows
-		        for (Cloth cloth : searchResults) {
-		                productTableModel.addRow(new Object[]{cloth.getProductId(), cloth.getName(), cloth.getPrice(), cloth.getSize(), cloth.getMaterial(), cloth.isInStock()});
-		        }
+				// Display the search results in a table
+				productTableModel.setRowCount(0); // Clear existing rows
+				for (Cloth cloth : searchResults) {
+					productTableModel.addRow(new Object[] { cloth.getProductId(), cloth.getName(), cloth.getPrice(),
+							cloth.getSize(), cloth.getMaterial(), cloth.isInStock() });
+				}
 
-		        productScrollPane.setVisible(true);
-		        customerScrollPane.setVisible(false);
-		        orderScrollPane.setVisible(false);
-		    }
+				productScrollPane.setVisible(true);
+				customerScrollPane.setVisible(false);
+				orderScrollPane.setVisible(false);
+			}
 		});
-		// Add the search panel to the main panel
+		// Adding the search panel to the main panel
 		image1.add(searchPanel);
-		
+
 		// editPanels
-		// Create panels for editing customers and cloths
+		// panels for editing customers and cloths
 		editCustomerPanel = new JPanel();
 		editCustomerPanel.setLayout(null);
 		editCustomerPanel.setBounds(310, 60, 300, 300);
@@ -776,10 +806,10 @@ public class HomePage extends JFrame implements ActionListener {
 
 		editClothPanel = new JPanel();
 		editClothPanel.setLayout(null);
-		editClothPanel.setBounds(310, 60, 300, 300);
+		editClothPanel.setBounds(310, 60, 300, 330);
 		editClothPanel.setVisible(false);
 
-		// Create input fields for editing customers
+		// input fields for editing customers
 		JLabel editCustomerLabel = new JLabel("Edit Customer:");
 		editCustomerLabel.setBounds(10, 10, 150, 20);
 		editCustomerPanel.add(editCustomerLabel);
@@ -816,33 +846,39 @@ public class HomePage extends JFrame implements ActionListener {
 		newAgeField.setBounds(120, 130, 150, 20);
 		editCustomerPanel.add(newAgeField);
 
-		// Create a "Save Changes" button for editing customers
+		// "Save Changes" button for editing customers
 		JButton saveCustomerChangesButton = new JButton("Save Changes");
 		saveCustomerChangesButton.setBounds(10, 160, 150, 30);
 		editCustomerPanel.add(saveCustomerChangesButton);
 
-		// Add action listener for the "Save Changes" button for customers
+		JLabel info = new JLabel("Enter 0 to unchanged field");
+		info.setBounds(10, 180, 150, 90);
+		editCustomerPanel.add(info);
+
+		// action listener for the "Save Changes" button for customers
 		saveCustomerChangesButton.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		        try {
-		            int customerId = Integer.parseInt(eCustomerIdField.getText());
-		            String newName = newNameField.getText();
-		            String newEmail = newEmailField.getText();
-		            int newAge = Integer.parseInt(newAgeField.getText());
-		            store1.editCustomer(customerId, newName, newEmail, newAge);
-		            JOptionPane.showMessageDialog(editCustomerPanel, "Customer changes saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-		            showCustomerTable();
-		            productScrollPane.setVisible(false);
-		            customerScrollPane.setVisible(true);
-		            orderScrollPane.setVisible(false);
-		        } catch (NumberFormatException | CustomerNotFoundException ex) {
-		            JOptionPane.showMessageDialog(editCustomerPanel, "Error: Invalid input or customer not found.", "Error", JOptionPane.ERROR_MESSAGE);
-		        }
-		    }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					int customerId = Integer.parseInt(eCustomerIdField.getText());
+					String newName = newNameField.getText();
+					String newEmail = newEmailField.getText();
+					int newAge = Integer.parseInt(newAgeField.getText());
+					store1.editCustomer(customerId, newName, newEmail, newAge);
+					JOptionPane.showMessageDialog(editCustomerPanel, "Customer changes saved successfully!", "Success",
+							JOptionPane.INFORMATION_MESSAGE);
+					showCustomerTable();
+					productScrollPane.setVisible(false);
+					customerScrollPane.setVisible(true);
+					orderScrollPane.setVisible(false);
+				} catch (NumberFormatException | CustomerNotFoundException ex) {
+					JOptionPane.showMessageDialog(editCustomerPanel, "Error: Invalid input or customer not found.",
+							"Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
 		});
 
-		// Create input fields for editing cloths
+		// input fields for editing cloths
 		JLabel editClothLabel = new JLabel("Edit Cloth:");
 		editClothLabel.setBounds(10, 10, 150, 20);
 		editClothPanel.add(editClothLabel);
@@ -886,7 +922,7 @@ public class HomePage extends JFrame implements ActionListener {
 		JTextField newClothMaterialField = new JTextField();
 		newClothMaterialField.setBounds(120, 160, 150, 20);
 		editClothPanel.add(newClothMaterialField);
-		
+
 		JLabel newClothToggleLabel = new JLabel("ToggleStock(y/n)");
 		newClothToggleLabel.setBounds(10, 190, 100, 20);
 		editClothPanel.add(newClothToggleLabel);
@@ -900,204 +936,222 @@ public class HomePage extends JFrame implements ActionListener {
 		saveClothChangesButton.setBounds(10, 220, 150, 30);
 		editClothPanel.add(saveClothChangesButton);
 
-		// Add action listener for the "Save Changes" button for cloths
+		JLabel infoCloth = new JLabel("Enter 0 to unchanged field");
+		infoCloth.setBounds(10, 250, 200, 40);
+		editClothPanel.add(infoCloth);
+
+		// action listener for the "Save Changes" button for cloths
 		saveClothChangesButton.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		        try {
-		            int clothId = Integer.parseInt(eClothIdField.getText());
-		            String newClothName = newClothNameField.getText();
-		            double newClothPrice = Double.parseDouble(newClothPriceField.getText());
-		            String newClothSize = newClothSizeField.getText();
-		            String newClothMaterial = newClothMaterialField.getText();
-		            store1.editCloth(clothId, newClothName, newClothPrice, newClothSize, newClothMaterial);
-		            Cloth cloth = store1.getClothById(clothId);
-		            String toggleStock = newClothToggleField.getText();
-		            if (toggleStock.equalsIgnoreCase("y")) {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					int clothId = Integer.parseInt(eClothIdField.getText());
+					String newClothName = newClothNameField.getText();
+					double newClothPrice = Double.parseDouble(newClothPriceField.getText());
+					String newClothSize = newClothSizeField.getText();
+					String newClothMaterial = newClothMaterialField.getText();
+					store1.editCloth(clothId, newClothName, newClothPrice, newClothSize, newClothMaterial);
+					Cloth cloth = store1.getClothById(clothId);
+					String toggleStock = newClothToggleField.getText();
+					if (toggleStock.equalsIgnoreCase("y")) {
 						if (cloth.isInStock())
 							cloth.setInStock(false);
 						else
 							cloth.setInStock(true);
-		            }
-		            JOptionPane.showMessageDialog(editClothPanel, "Cloth changes saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-		            showProductTable();
-		            productScrollPane.setVisible(true);
-		            customerScrollPane.setVisible(false);
-		            orderScrollPane.setVisible(false);
-		        } catch (NumberFormatException | ProductNotFoundException ex) {
-		            JOptionPane.showMessageDialog(editClothPanel, "Error: Invalid input or cloth not found.", "Error", JOptionPane.ERROR_MESSAGE);
-		        }
-		    }
+					}
+					JOptionPane.showMessageDialog(editClothPanel, "Cloth changes saved successfully!", "Success",
+							JOptionPane.INFORMATION_MESSAGE);
+					showProductTable();
+					productScrollPane.setVisible(true);
+					customerScrollPane.setVisible(false);
+					orderScrollPane.setVisible(false);
+				} catch (NumberFormatException | ProductNotFoundException ex) {
+					JOptionPane.showMessageDialog(editClothPanel, "Error: Invalid input or cloth not found.", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			}
 		});
 
-		// Create a main panel with buttons for selecting the type of object to edit
-		
+		// main panel with buttons for selecting the type of object to edit
+
 		editCustomerButton = new JButton("Edit Customer");
 		editCustomerButton.setBounds(650, 320, 150, 40);
 		editCustomerButton.addActionListener(this);
-		
+
 		editClothButton = new JButton("Edit Cloth");
 		editClothButton.setBounds(820, 320, 150, 40);
 		editClothButton.addActionListener(this);
-		
+
 		image1.add(editCustomerButton);
 		image1.add(editClothButton);
 
-		// Add all panels to the main image1 panel
+		// Adding all panels to the main image1 panel
 		image1.add(editCustomerPanel);
 		image1.add(editClothPanel);
-		
-		
-		//del panels
+
+		// del panels
 		delPanel = new JPanel();
-        delPanel.setLayout(null);
-        delPanel.setBounds(310, 60, 300, 300);
-        deleteClothButton = new JButton("Delete Cloth");
-        deleteCustomerButton = new JButton("Delete Customer");
-        deleteOrderButton = new JButton("Delete Order");
+		delPanel.setLayout(null);
+		delPanel.setBounds(310, 60, 300, 300);
+		deleteClothButton = new JButton("Delete Cloth");
+		deleteCustomerButton = new JButton("Delete Customer");
+		deleteOrderButton = new JButton("Delete Order");
 
-        deleteClothButton.addActionListener(this);
-        deleteCustomerButton.addActionListener(this);
-        deleteOrderButton.addActionListener(this);
-        
-        deleteClothButton.setBounds(75, 30, 150, 30);
-        deleteCustomerButton.setBounds(75, 70, 150, 30);
-        deleteOrderButton.setBounds(75, 110, 150, 30);
+		deleteClothButton.addActionListener(this);
+		deleteCustomerButton.addActionListener(this);
+		deleteOrderButton.addActionListener(this);
 
-        delPanel.add(deleteClothButton);
-        delPanel.add(deleteCustomerButton);
-        delPanel.add(deleteOrderButton);
-        delPanel.setVisible(false);
-        image1.add(delPanel);
-        
-        //del cloth panel
-        deleteClothPanel = new JPanel();
-        deleteClothPanel.setLayout(null);
-        deleteClothPanel.setBounds(310, 60, 300, 300);
+		deleteClothButton.setBounds(75, 30, 150, 30);
+		deleteCustomerButton.setBounds(75, 70, 150, 30);
+		deleteOrderButton.setBounds(75, 110, 150, 30);
 
-        JLabel label = new JLabel("Cloth ID to delete:");
-        label.setBounds(75, 10, 150, 20); // Position the label above the text field
+		delPanel.add(deleteClothButton);
+		delPanel.add(deleteCustomerButton);
+		delPanel.add(deleteOrderButton);
+		delPanel.setVisible(false);
+		image1.add(delPanel);
 
-        JTextField delClothIdField = new JTextField();
-        delClothIdField.setBounds(75, 30, 150, 30);
+		// del cloth panel
+		deleteClothPanel = new JPanel();
+		deleteClothPanel.setLayout(null);
+		deleteClothPanel.setBounds(310, 60, 300, 300);
 
-        JButton deleteClothEnter = new JButton("Delete Cloth");
-        deleteClothEnter.setBounds(75, 70, 150, 30);
-        deleteClothEnter.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Handle the delete action here
-                try {
-                    int clothId = Integer.parseInt(delClothIdField.getText());
-                    store1.deleteCloth(clothId);
-                    JOptionPane.showMessageDialog(deleteClothPanel, "Cloth "+ clothId +" deleted!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    showProductTable();
-		            productScrollPane.setVisible(true);
-		            customerScrollPane.setVisible(false);
-		            orderScrollPane.setVisible(false);
-                } catch (NumberFormatException ex) {
-                	System.out.println("NumFormatError in clothId");
-                } catch (ProductNotFoundException e1) {
+		JLabel label = new JLabel("Cloth ID to delete:");
+		label.setBounds(75, 10, 150, 20); // Position the label above the text field
+
+		JTextField delClothIdField = new JTextField();
+		delClothIdField.setBounds(75, 30, 150, 30);
+
+		JButton deleteClothEnter = new JButton("Delete Cloth");
+		deleteClothEnter.setBounds(75, 70, 150, 30);
+		deleteClothEnter.setFocusable(false);
+		deleteClothEnter.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// delete action here
+				try {
+					int clothId = Integer.parseInt(delClothIdField.getText());
+					store1.deleteCloth(clothId);
+					JOptionPane.showMessageDialog(deleteClothPanel, "Cloth " + clothId + " deleted!", "Success",
+							JOptionPane.INFORMATION_MESSAGE);
+					showProductTable();
+					productScrollPane.setVisible(true);
+					customerScrollPane.setVisible(false);
+					orderScrollPane.setVisible(false);
+				} catch (NumberFormatException ex) {
+					System.out.println("NumFormatError in clothId");
+				} catch (ProductNotFoundException e1) {
 					System.out.println("Cloth already don't exist ");
 				}
-            }
-        });
+			}
+		});
 
-        deleteClothPanel.add(label);
-        deleteClothPanel.add(delClothIdField);
-        deleteClothPanel.add(deleteClothEnter);
-        deleteClothPanel.setVisible(false);
-        image1.add(deleteClothPanel);
-        
-     // Create deleteCustomerPanel
-        deleteCustomerPanel = new JPanel();
-        deleteCustomerPanel.setLayout(null);
-        deleteCustomerPanel.setBounds(310, 60, 300, 300);
+		deleteClothPanel.add(label);
+		deleteClothPanel.add(delClothIdField);
+		deleteClothPanel.add(deleteClothEnter);
+		deleteClothPanel.setVisible(false);
+		image1.add(deleteClothPanel);
 
-        JLabel customerLabel = new JLabel("Customer ID to delete:");
-        customerLabel.setBounds(75, 10, 150, 20);
+		// deleteCustomerPanel
+		deleteCustomerPanel = new JPanel();
+		deleteCustomerPanel.setLayout(null);
+		deleteCustomerPanel.setBounds(310, 60, 300, 300);
 
-        JTextField delCustomerField = new JTextField();
-        delCustomerField.setBounds(75, 30, 150, 30);
+		JLabel customerLabel = new JLabel("Customer ID to delete:");
+		customerLabel.setBounds(75, 10, 150, 20);
 
-        JButton deleteCustomerEnter = new JButton("Delete Customer");
-        deleteCustomerEnter.setBounds(75, 70, 150, 30);
-        deleteCustomerEnter.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Handle the delete customer action here
-                try {
-                    int customerId = Integer.parseInt(delCustomerField.getText());
-                    store1.deleteCustomer(customerId);
-                    JOptionPane.showMessageDialog(deleteClothPanel, "Customer "+ customerId +" deleted!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    showCustomerTable();
-		            productScrollPane.setVisible(false);
-		            customerScrollPane.setVisible(true);
-		            orderScrollPane.setVisible(false);
-                } catch (NumberFormatException ex) {
-                    System.out.println("NumFormatError in customer ID");
-                } catch (CustomerNotFoundException e1) {
-                    System.out.println("Customer does not exist");
-                }
-            }
-        });
+		JTextField delCustomerField = new JTextField();
+		delCustomerField.setBounds(75, 30, 150, 30);
 
-        deleteCustomerPanel.add(customerLabel);
-        deleteCustomerPanel.add(delCustomerField);
-        deleteCustomerPanel.add(deleteCustomerEnter);
-        deleteCustomerPanel.setVisible(false);
-        image1.add(deleteCustomerPanel);
+		JButton deleteCustomerEnter = new JButton("Delete Customer");
+		deleteCustomerEnter.setBounds(75, 70, 150, 30);
+		deleteCustomerEnter.setFocusable(false);
+		deleteCustomerEnter.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// delete customer action here
+				try {
+					int customerId = Integer.parseInt(delCustomerField.getText());
+					store1.deleteCustomer(customerId);
+					JOptionPane.showMessageDialog(deleteClothPanel, "Customer " + customerId + " deleted!", "Success",
+							JOptionPane.INFORMATION_MESSAGE);
+					showCustomerTable();
+					productScrollPane.setVisible(false);
+					customerScrollPane.setVisible(true);
+					orderScrollPane.setVisible(false);
+				} catch (NumberFormatException ex) {
+					System.out.println("NumFormatError in customer ID");
+				} catch (CustomerNotFoundException e1) {
+					System.out.println("Customer does not exist");
+				}
+			}
+		});
 
-        // Create deleteOrderPanel
-        deleteOrderPanel = new JPanel();
-        deleteOrderPanel.setLayout(null);
-        deleteOrderPanel.setBounds(310, 60, 300, 300);
+		deleteCustomerPanel.add(customerLabel);
+		deleteCustomerPanel.add(delCustomerField);
+		deleteCustomerPanel.add(deleteCustomerEnter);
+		deleteCustomerPanel.setVisible(false);
+		image1.add(deleteCustomerPanel);
 
-        JLabel orderLabel = new JLabel("Order ID to delete:");
-        orderLabel.setBounds(75, 10, 150, 20);
+		// deleteOrderPanel
+		deleteOrderPanel = new JPanel();
+		deleteOrderPanel.setLayout(null);
+		deleteOrderPanel.setBounds(310, 60, 300, 300);
 
-        JTextField delOrderField = new JTextField();
-        delOrderField.setBounds(75, 30, 150, 30);
+		JLabel orderLabel = new JLabel("Order ID to delete:");
+		orderLabel.setBounds(75, 10, 150, 20);
 
-        JButton deleteOrderEnter = new JButton("Delete Order");
-        deleteOrderEnter.setBounds(75, 70, 150, 30);
-        deleteOrderEnter.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Handle the delete order action here
-                try {
-                    int orderId = Integer.parseInt(delOrderField.getText());
-                    store1.deleteOrder(orderId);
-                    JOptionPane.showMessageDialog(deleteClothPanel, "Order "+ orderId +" deleted!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    showOrderTable();
-		            productScrollPane.setVisible(false);
-		            customerScrollPane.setVisible(false);
-		            orderScrollPane.setVisible(true);
-                } catch (NumberFormatException ex) {
-                    System.out.println("NumFormatError in order ID");
-                } catch (OrderNotFoundException e1) {
-                    System.out.println("Order does not exist");
-                }
-            }
-        });
+		JTextField delOrderField = new JTextField();
+		delOrderField.setBounds(75, 30, 150, 30);
 
-        deleteOrderPanel.add(orderLabel);
-        deleteOrderPanel.add(delOrderField);
-        deleteOrderPanel.add(deleteOrderEnter);
-        deleteOrderPanel.setVisible(false);
-        image1.add(deleteOrderPanel);
+		JButton deleteOrderEnter = new JButton("Delete Order");
+		deleteOrderEnter.setBounds(75, 70, 150, 30);
+		deleteOrderEnter.setFocusable(false);
+		deleteOrderEnter.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// delete order action here
+				try {
+					int orderId = Integer.parseInt(delOrderField.getText());
+					store1.deleteOrder(orderId);
+					JOptionPane.showMessageDialog(deleteClothPanel, "Order " + orderId + " deleted!", "Success",
+							JOptionPane.INFORMATION_MESSAGE);
+					showOrderTable();
+					productScrollPane.setVisible(false);
+					customerScrollPane.setVisible(false);
+					orderScrollPane.setVisible(true);
+				} catch (NumberFormatException ex) {
+					System.out.println("NumFormatError in order ID");
+				} catch (OrderNotFoundException e1) {
+					System.out.println("Order does not exist");
+				}
+			}
+		});
 
+		deleteOrderPanel.add(orderLabel);
+		deleteOrderPanel.add(delOrderField);
+		deleteOrderPanel.add(deleteOrderEnter);
+		deleteOrderPanel.setVisible(false);
+		image1.add(deleteOrderPanel);
+		editCustomerButton.setFocusable(false);
+		editClothButton.setFocusable(false);
+		deleteClothButton.setFocusable(false);
+		deleteCustomerButton.setFocusable(false);
+		deleteOrderButton.setFocusable(false);
+		deleteCustomerPanel.setFocusable(false);
+		deleteOrderPanel.setFocusable(false);
 
-        
 		setSize(1120, 630);
 		setLocation(250, 100);
 		setVisible(true);
+		setResizable(false);
 		setFocusable(false);
-		
+
 	}
 
 	public void actionPerformed(ActionEvent ae) {
 		if (ae.getSource() == addCustomerButton) {
+			searchPanel.setVisible(false);
 			delPanel.setVisible(false);
 			editCustomerPanel.setVisible(false);
 			editClothPanel.setVisible(false);
@@ -1109,14 +1163,15 @@ public class HomePage extends JFrame implements ActionListener {
 				customerInputPanel.setVisible(true);
 			else
 				customerInputPanel.setVisible(false);
-			
+
 		} else if (ae.getSource() == addOrderButton) {
 			if (!orderInputPanel.isVisible())
 				orderInputPanel.setVisible(true);
 			else
 				orderInputPanel.setVisible(false);
-			
+
 		} else if (ae.getSource() == addProductButton) {
+			searchPanel.setVisible(false);
 			delPanel.setVisible(false);
 			editCustomerPanel.setVisible(false);
 			editClothPanel.setVisible(false);
@@ -1129,6 +1184,7 @@ public class HomePage extends JFrame implements ActionListener {
 			else
 				clothInputPanel.setVisible(false);
 		} else if (ae.getSource() == deleteButton) {
+			searchPanel.setVisible(false);
 			editCustomerPanel.setVisible(false);
 			editClothPanel.setVisible(false);
 			customerInputPanel.setVisible(false);
@@ -1136,9 +1192,12 @@ public class HomePage extends JFrame implements ActionListener {
 			deleteClothPanel.setVisible(false);
 			deleteCustomerPanel.setVisible(false);
 			deleteOrderPanel.setVisible(false);
-			if (!delPanel.isVisible())delPanel.setVisible(true);
-			else delPanel.setVisible(false);
+			if (!delPanel.isVisible())
+				delPanel.setVisible(true);
+			else
+				delPanel.setVisible(false);
 		} else if (ae.getSource() == deleteClothButton) {
+			searchPanel.setVisible(false);
 			delPanel.setVisible(false);
 			editCustomerPanel.setVisible(false);
 			editClothPanel.setVisible(false);
@@ -1147,8 +1206,9 @@ public class HomePage extends JFrame implements ActionListener {
 			deleteClothPanel.setVisible(true);
 			deleteCustomerPanel.setVisible(false);
 			deleteOrderPanel.setVisible(false);
-			delPanel.setVisible(false);	
+			delPanel.setVisible(false);
 		} else if (ae.getSource() == deleteCustomerButton) {
+			searchPanel.setVisible(false);
 			delPanel.setVisible(false);
 			editCustomerPanel.setVisible(false);
 			editClothPanel.setVisible(false);
@@ -1157,8 +1217,9 @@ public class HomePage extends JFrame implements ActionListener {
 			deleteClothPanel.setVisible(false);
 			deleteCustomerPanel.setVisible(true);
 			deleteOrderPanel.setVisible(false);
-			delPanel.setVisible(false);	
-		}else if (ae.getSource() == deleteOrderButton) {
+			delPanel.setVisible(false);
+		} else if (ae.getSource() == deleteOrderButton) {
+			searchPanel.setVisible(false);
 			delPanel.setVisible(false);
 			editCustomerPanel.setVisible(false);
 			editClothPanel.setVisible(false);
@@ -1170,21 +1231,37 @@ public class HomePage extends JFrame implements ActionListener {
 			delPanel.setVisible(false);
 
 		} else if (ae.getSource() == searchButton) {
-			if (!searchPanel.isVisible())searchPanel.setVisible(true);
-			else searchPanel.setVisible(false);
-		} else if (ae.getSource() == editCustomerButton) {
-			if(!editCustomerPanel.isVisible())editCustomerPanel.setVisible(true);
-			else editCustomerPanel.setVisible(false);
 			delPanel.setVisible(false);
-	        editClothPanel.setVisible(false);
-	        customerInputPanel.setVisible(false);
+			editCustomerPanel.setVisible(false);
+			editClothPanel.setVisible(false);
+			customerInputPanel.setVisible(false);
+			clothInputPanel.setVisible(false);
+			deleteClothPanel.setVisible(false);
+			deleteCustomerPanel.setVisible(false);
+			deleteOrderPanel.setVisible(false);
+			delPanel.setVisible(false);
+			if (!searchPanel.isVisible())
+				searchPanel.setVisible(true);
+			else
+				searchPanel.setVisible(false);
+		} else if (ae.getSource() == editCustomerButton) {
+			if (!editCustomerPanel.isVisible())
+				editCustomerPanel.setVisible(true);
+			else
+				editCustomerPanel.setVisible(false);
+			searchPanel.setVisible(false);
+			delPanel.setVisible(false);
+			editClothPanel.setVisible(false);
+			customerInputPanel.setVisible(false);
 			clothInputPanel.setVisible(false);
 			deleteClothPanel.setVisible(false);
 			deleteCustomerPanel.setVisible(false);
 			deleteOrderPanel.setVisible(false);
 		} else if (ae.getSource() == editClothButton) {
-			if(!editClothPanel.isVisible())editClothPanel.setVisible(true);
-			else editClothPanel.setVisible(false);
+			if (!editClothPanel.isVisible())
+				editClothPanel.setVisible(true);
+			else
+				editClothPanel.setVisible(false);
 			delPanel.setVisible(false);
 			editCustomerPanel.setVisible(false);
 			customerInputPanel.setVisible(false);
@@ -1192,19 +1269,25 @@ public class HomePage extends JFrame implements ActionListener {
 			deleteClothPanel.setVisible(false);
 			deleteCustomerPanel.setVisible(false);
 			deleteOrderPanel.setVisible(false);
-	        
+
 		} else if (ae.getSource() == showAllButton) {
 			showProductTable();
-			if (!productScrollPane.isVisible()) productScrollPane.setVisible(true);
-			else productScrollPane.setVisible(false);
+			if (!productScrollPane.isVisible())
+				productScrollPane.setVisible(true);
+			else
+				productScrollPane.setVisible(false);
 		} else if (ae.getSource() == showCustomerButton) {
 			showCustomerTable();
-			if (!customerScrollPane.isVisible()) customerScrollPane.setVisible(true);
-			else customerScrollPane.setVisible(false);
+			if (!customerScrollPane.isVisible())
+				customerScrollPane.setVisible(true);
+			else
+				customerScrollPane.setVisible(false);
 		} else if (ae.getSource() == showOrderButton) {
 			showOrderTable();
-			if (!orderScrollPane.isVisible()) orderScrollPane.setVisible(true);
-			else orderScrollPane.setVisible(false);
+			if (!orderScrollPane.isVisible())
+				orderScrollPane.setVisible(true);
+			else
+				orderScrollPane.setVisible(false);
 		}
 
 	}
@@ -1214,8 +1297,8 @@ public class HomePage extends JFrame implements ActionListener {
 		productTableModel.setRowCount(0);
 		// Populate the table with product data
 		for (Cloth cloth : store1.getClothes()) {
-			productTableModel.addRow(new Object[] { cloth.getProductId(), cloth.getName(), cloth.getPrice(), cloth.getSize(),
-					cloth.getMaterial(), cloth.isInStock() });
+			productTableModel.addRow(new Object[] { cloth.getProductId(), cloth.getName(), cloth.getPrice(),
+					cloth.getSize(), cloth.getMaterial(), cloth.isInStock() });
 		}
 
 		customerScrollPane.setVisible(false);
@@ -1225,68 +1308,68 @@ public class HomePage extends JFrame implements ActionListener {
 	// Method to populate and show the customer table
 	private void showCustomerTable() {
 		customerTableModel.setRowCount(0);
-		// Populate the table with product data
+		// table with product data
 		for (Customer customer : store1.getCustomers()) {
-			customerTableModel.addRow(new Object[] { customer.getCustomerId(), customer.getName(), customer.getEmail(), customer.getAge() });
+			customerTableModel.addRow(new Object[] { customer.getCustomerId(), customer.getName(), customer.getEmail(),
+					customer.getAge() });
 		}
-		
+
 		productScrollPane.setVisible(false);
 		orderScrollPane.setVisible(false);
 	}
-	
+
 	// Method to display all order details
 	private void showOrderTable() {
-	    // Clear the existing rows in the order table
-	    orderTableModel.setRowCount(0);
 
-	    for (Order order : store1.getOrders()) {
-	        String customerName = order.getCustomer().getName();
+		orderTableModel.setRowCount(0);
 
-	        // Create a StringBuilder to build the list of clothes
-	        StringBuilder itemsOrdered = new StringBuilder();
+		for (Order order : store1.getOrders()) {
+			String customerName = order.getCustomer().getName();
 
-	        for (Cloth cloth : order.getClothes()) {
-	            itemsOrdered.append(cloth.getName()).append(", ");
-	        }
+			StringBuilder itemsOrdered = new StringBuilder();
 
-	        // Remove the trailing ", " from the list of items
-	        if (itemsOrdered.length() > 0) {
-	            itemsOrdered.setLength(itemsOrdered.length() - 2);
-	        }
-	        
-	        orderTableModel.addRow(new Object[]{order.getOrderId(), customerName, itemsOrdered.toString(), order.calculateTotalAmount()});
-	    }
-	    TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(orderTableModel);
-	    sorter.setComparator(3, Comparator.comparingDouble(value -> {
-	        if (value instanceof Double) {
-	            return (Double) value;
-	        } else if (value instanceof String) {
-	            try {
-	                return Double.parseDouble((String) value);
-	            } catch (NumberFormatException e) {
-	                return 0.0; 
-	            }
-	        }
-	        return 0.0; 
-	    }));
+			for (Cloth cloth : order.getClothes()) {
+				itemsOrdered.append(cloth.getName()).append(", ");
+			}
 
-	    orderTable.setRowSorter(sorter);
-	    productScrollPane.setVisible(false);
+			if (itemsOrdered.length() > 0) {
+				itemsOrdered.setLength(itemsOrdered.length() - 2);
+			}
+
+			orderTableModel.addRow(new Object[] { order.getOrderId(), customerName, itemsOrdered.toString(),
+					order.calculateTotalAmount() });
+		}
+		TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(orderTableModel);
+		sorter.setComparator(3, Comparator.comparingDouble(value -> {
+			if (value instanceof Double) {
+				return (Double) value;
+			} else if (value instanceof String) {
+				try {
+					return Double.parseDouble((String) value);
+				} catch (NumberFormatException e) {
+					return 0.0;
+				}
+			}
+			return 0.0;
+		}));
+
+		orderTable.setRowSorter(sorter);
+		productScrollPane.setVisible(false);
 		customerScrollPane.setVisible(false);
 	}
 
 	public static void main(String[] args) {
-	    try {
-	        HomePage gui = new HomePage();
-	        gui.setVisible(true);
+		try {
+			HomePage gui = new HomePage();
+			gui.setVisible(true);
 
-	        // Register a shutdown hook to save data when the application is closed
-	        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-	            store1.saveDataToFile("data.bin");
-	        }));
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
+			// save data when the application is closed
+			Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+				store1.saveDataToFile("data.bin");
+			}));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -64,7 +64,7 @@ public class OnlineStoreConsoleApp {
         do {
             System.out.println("\nProducts Menu");
             System.out.println("1. Show all Products");
-            System.out.println("2. Add new Product (Shoe or Cloth)");
+            System.out.println("2. Add new Product");
             System.out.println("3. Search Product");
             System.out.println("4. Edit Product");
             System.out.println("5. Delete Product");
@@ -98,7 +98,7 @@ public class OnlineStoreConsoleApp {
     }
 
     private void showAllProducts() {
-		System.out.println("All Products (Clothes and Shoes):");
+		System.out.println("All Products :");
 		List<Cloth> clothes = store1.getClothes();
 
 		System.out.println("Clothes:");

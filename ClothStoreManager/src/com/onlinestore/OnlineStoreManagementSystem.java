@@ -42,11 +42,18 @@ public class OnlineStoreManagementSystem implements Serializable {
 		clothes = new ArrayList<>();
 		orders = new ArrayList<>();
 	}
-
+	
+	
+	public void addCustomer(String name, String email, int age) {
+        Customer customer = new Customer(name, email, age);
+        customers.add(customer);
+    }
+	//Method overloading here here RAM
 	public void addCustomer(Customer customer) {
 		customers.add(customer);
 	}
-
+	
+	
 	public void addCloth(Cloth cloth) {
 		clothes.add(cloth);
 	}
@@ -80,6 +87,8 @@ public class OnlineStoreManagementSystem implements Serializable {
 	}
 
 	public void displayOrders() {
+		
+		// Only for checking in the console version
 		for (Order order : orders) {
 			System.out.println("Order ID: " + order.getOrderId());
 			System.out.println("Customer: " + order.getCustomer().getName());
@@ -130,7 +139,7 @@ public class OnlineStoreManagementSystem implements Serializable {
 	public List<Cloth> searchClothesByName(String name) throws ProductNotFoundException {
 		List<Cloth> result = new ArrayList<>();
 		for (Cloth cloth : clothes) {
-			if (cloth.getName().equalsIgnoreCase(name)) {
+			if (cloth.getName().toLowerCase().contains(name.toLowerCase())) {
 				result.add(cloth);
 			}
 		}
@@ -227,7 +236,7 @@ public class OnlineStoreManagementSystem implements Serializable {
 				fileIn.close();
 				System.out.println("Data loaded successfully.");
 			} else {
-				system = new OnlineStoreManagementSystem(); // Create an empty system
+				system = new OnlineStoreManagementSystem(); // an empty system
 				System.out.println("New system !!!");
 			}
 		} catch (IOException | ClassNotFoundException e) {
@@ -235,7 +244,7 @@ public class OnlineStoreManagementSystem implements Serializable {
 		}
 
 		if (system == null) {
-			system = new OnlineStoreManagementSystem(); // Create a new empty system if loading failed
+			system = new OnlineStoreManagementSystem(); // Creating  a new empty system if loading failed
 			System.out.println("null, so New system !!!");
 		}
 

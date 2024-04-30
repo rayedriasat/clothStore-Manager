@@ -15,16 +15,16 @@ interface ProductInterface {
 interface StockAvailability {
 	boolean isInStock();
 
-	void setInStock(boolean inStock);
+	abstract void setInStock(boolean inStock);
 }
 
-public class Product implements ProductInterface, Serializable {
+public abstract class Product implements ProductInterface, Serializable {
 	private static final long serialVersionUID = 1L;
 	private static int nextProductId = 801;
 	private int productId;
 	private String name;
 	private double price;
-
+	private boolean inStock;
 	
 	public static int getNextProductId() {
 		return nextProductId;
@@ -57,7 +57,15 @@ public class Product implements ProductInterface, Serializable {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	
+	public boolean isInStock() {
+        return inStock;
+    }
 
+    
+    abstract void setInStock(boolean inStock);
+
+	
 	public Product(String name, double price) {
 		this.name = name;
 		this.price = price;
